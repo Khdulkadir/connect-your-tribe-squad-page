@@ -1,9 +1,46 @@
 <%- include('./partials/head') %>
 
+<header>
+  <h1>FDND</h1>
+  <a href="./squad/?filter={squad_id:3}"> Squad 1D </a>
+  <a href="./?filter={squad_id:4}"> Squad 1E </a>
+  <a href="./?filter={squad_id:5}"> Squad 1F </a>
+
+  <select>
+    <option></option>
+    <option></option>
+    <option></option>
+  </select>
+</header>
+<main>
+  <article>
+    <h2>Naam</h2>
+    <h3>Squad ID</h3>
+    <ul>
+      <li>Phone</li>
+      <li>Email</li>
+      <li>Github</li>
+    </ul>
+  </article>
+</main>
+
 <h2>Students</h2>
 <ul>
   <% persons.forEach(person => { %>
-    <li><a href="./person/<%= person.id %>"><%= person.name %></a>, squad_id <%= person.squad_id %></li>
+  <li>
+    <a href="./person/<%= person.id %>"><%= person.name %></a>, squad_id <%=
+    person.squad_id %>
+  </li>
+  <% }) %>
+</ul>
+
+<ul>
+  <% squads.forEach(squad => { %>
+  <li>
+    <a href="/squad/<%= squad.id%>">
+      <h2><%= squad.name %></h2>
+    </a>
+  </li>
   <% }) %>
 </ul>
 
