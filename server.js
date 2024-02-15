@@ -25,13 +25,18 @@ app.use(express.static("public"));
 // Maak een GET route voor de index
 app.get("/", function (request, response) {
   // Haal alle personen uit de WHOIS API op
-  fetchJson(apiUrl + "/person").then((apiData) => {
-    // apiData bevat gegevens van alle personen uit alle squads
-    // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+  fetchJson(apiUrl + '/person/?filter={"squad_id":5}&sort=name').then(
+    (apiData) => {
+      // apiData bevat gegevens van alle personen uit alle squads
+      // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
 
-    // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-    response.render("index", { persons: apiData.data, squads: squadData.data });
-  });
+      // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+      response.render("index", {
+        persons: apiData.data,
+        squads: squadData.data,
+      });
+    }
+  );
 });
 
 // Maak een POST route voor de index
@@ -56,17 +61,4 @@ app.set("port", process.env.PORT || 8000);
 app.listen(app.get("port"), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get("port")}`);
-});
-
-// Maak een GET route voor een detailpagina met een request parameter id
-app.get("/squad/:id", function (request, response) {
-  // Gebruik de request parameter id en haal de juiste squad uit de WHOIS API op
-  fetchJson(apiUrl + "/squad/" + request.params.id).then((apiData) => {
-    // Render squad.ejs uit de views map en geef de opgehaalde data mee als variable, genaamd squad
-    response.render("squad", {
-      squad: apiData.data,
-      person: personData.data,
-      squads: squadData.data,
-    });
-  });
 });
