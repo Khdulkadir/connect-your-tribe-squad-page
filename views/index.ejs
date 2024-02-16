@@ -14,18 +14,20 @@
 
 <main>
   <h2>12 Resultaten</h2>
+  <div class="container">
+    <% persons.forEach(person => { %>
+    <article>
+      <img src="<%= person.avatar %>" width="150px" />
+      <h3><%= person.name %> <%= person.surname %></h3>
 
-  <% persons.forEach(person => { %>
-  <article>
-    <img src="<%= person.avatar %>" />
-    <h3><%= person.name %> <%= person.surname %></h3>
-
-    <h4>Squad <%= person.squad_id %></h4>
-    <ul>
-      <li><%= person.id %></li>
-      <li><%= person.website %></li>
-      <li><%= person.github_handle %></li>
-    </ul>
-  </article>
+      <h4>Squad <%= person.squad_id %></h4>
+      <ul>
+        <li><%= person.id %></li>
+        <li><%= person.website %></li>
+        <li><%= person.github_handle %></li>
+      </ul>
+    </article>
+    <% }) %>
+  </div>
 </main>
-<% }) %> <%- include('./partials/foot') %>
+<%- include('./partials/foot') %>
