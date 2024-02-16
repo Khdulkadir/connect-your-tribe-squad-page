@@ -1,33 +1,31 @@
 <%- include('./partials/head') %>
 
 <header>
-  <h1>FDND</h1>
-
+  <p>Sorteren op:</p>
   <select>
-    <option></option>
-    <option></option>
-    <option></option>
+    <option>Naam A-Z</option>
+    <option>Naam Z-A</option>
+    <option>ID laag-hoog</option>
+    <option>ID hoog-laag</option>
   </select>
+  <input type="search" />
+  Zoeken
 </header>
+
 <main>
+  <h2>12 Resultaten</h2>
+
+  <% persons.forEach(person => { %>
   <article>
-    <h2>Naam</h2>
-    <h3>Squad ID</h3>
+    <img src="<%= person.avatar %>" />
+    <h3><%= person.name %> <%= person.surname %></h3>
+
+    <h4>Squad <%= person.squad_id %></h4>
     <ul>
-      <li>Phone</li>
-      <li>Email</li>
-      <li>Github</li>
+      <li><%= person.id %></li>
+      <li><%= person.website %></li>
+      <li><%= person.github_handle %></li>
     </ul>
   </article>
 </main>
-
-<h2>Students</h2>
-<ul>
-  <% persons.forEach(person => { %>
-  <li>
-    <%= person.name %></a>, squad_id <%=
-    person.squad_id %>
-  </li>
-  <% }) %>
-</ul>
-<%- include('./partials/foot') %>
+<% }) %> <%- include('./partials/foot') %>
