@@ -1,30 +1,41 @@
 <%- include('./partials/head') %>
 
-<header>
-  <p>Sorteren op:</p>
-  <select>
-    <option>Naam A-Z</option>
-    <option>Naam Z-A</option>
-    <option>ID laag-hoog</option>
-    <option>ID hoog-laag</option>
-  </select>
-  <input type="search" />
-  Zoeken
-</header>
+<header></header>
 
 <main>
-  <h2>12 Resultaten</h2>
+  <header>
+    <h2>21 Resultaten</h2>
+    <div class="sorting">
+      <p>Sorteren op:</p>
+      <select onchange="location = this.value;">
+        <option value="/?sort=name">Naam A-Z</option>
+        <option value="/?sort=name">Naam Z-A</option>
+        <option value="/?sort=id">ID laag-hoog</option>
+        <option value="/?sort=id">ID hoog-laag</option>
+      </select>
+    </div>
+  </header>
   <div class="container">
     <% persons.forEach(person => { %>
     <article>
-      <img src="<%= person.avatar %>" width="150px" />
+      <img
+        class="avatar"
+        src="<%= person.avatar %>"
+        width="150px"
+        height="150px"
+      />
       <h3><%= person.name %> <%= person.surname %></h3>
 
-      <h4>Squad <%= person.squad_id %></h4>
+      <h4>ID #<%= person.id %></h4>
       <ul>
-        <li><%= person.id %></li>
-        <li><%= person.website %></li>
-        <li><%= person.github_handle %></li>
+        <li>
+          <img class="github" src="./assets/internet.png" width="30px" />
+          <a href="<%= person.website %>"><%= person.website %></a>
+        </li>
+        <li>
+          <img class="github" src="./assets/github.png" width="30px" />
+          <span>@<%= person.nickname %></span>
+        </li>
       </ul>
     </article>
     <% }) %>
