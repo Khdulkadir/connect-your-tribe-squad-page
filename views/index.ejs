@@ -23,20 +23,51 @@
         src="<%= person.avatar %>"
         width="150px"
         height="150px"
+        alt="avatar"
       />
       <h3><%= person.name %> <%= person.surname %></h3>
 
       <h4>ID #<%= person.id %></h4>
       <ul>
         <li>
-          <img class="github" src="./assets/internet.png" width="30px" />
+          <img
+            class="github"
+            src="./assets/internet.png"
+            width="30px"
+            alt="website"
+          />
           <a href="<%= person.website %>"><%= person.website %></a>
         </li>
         <li>
-          <img class="github" src="./assets/github.png" width="30px" />
+          <img
+            class="github"
+            src="./assets/github.png"
+            width="30px"
+            alt="github"
+          />
           <span>@<%= person.nickname %></span>
         </li>
       </ul>
+      <div class="like-dislike">
+        <div class="like">
+          <img
+            class="like-icon"
+            src="./assets/up-arrow.png"
+            width="30px"
+            alt="like"
+          />
+          <span class="number">2</span>
+        </div>
+        <div class="dislike">
+          <span class="number">2</span>
+          <img
+            class="dislike-icon"
+            src="./assets/down-arrow.png"
+            width="30px"
+            alt="dislike"
+          />
+        </div>
+      </div>
     </article>
     <% }) %>
   </div>

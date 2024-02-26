@@ -24,7 +24,7 @@ div.container {
 
 article {
   width: 350px;
-  height: 350px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,4 +130,31 @@ a {
 
 li span {
   vertical-align: 10px;
+}
+
+div.like-dislike {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 20px;
+}
+
+span.number {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  vertical-align: 5px;
+}
+
+img.like-icon,
+img.dislike-icon {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+img.like-icon:hover,
+img.dislike-icon:hover {
+  opacity: 0.5;
 }
