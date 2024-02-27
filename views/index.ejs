@@ -7,11 +7,12 @@
     <h2>21 Resultaten</h2>
     <div class="sorting">
       <p>Sorteren op:</p>
-      <select onchange="location = this.value;">
+      <select onchange="saveSelectedOption(this); location = this.value;">
+        <option value="/">Standaard</option>
         <option value="/?sort=name">Naam A-Z</option>
-        <option value="/?sort=name">Naam Z-A</option>
+        <option value="/?sort=-name">Naam Z-A</option>
         <option value="/?sort=id">ID laag-hoog</option>
-        <option value="/?sort=id">ID hoog-laag</option>
+        <option value="/?sort=-id">ID hoog-laag</option>
       </select>
     </div>
   </header>
@@ -56,10 +57,10 @@
             width="30px"
             alt="like"
           />
-          <span class="number">2</span>
+          <span class="number">0</span>
         </div>
         <div class="dislike">
-          <span class="number">2</span>
+          <span class="number">0</span>
           <img
             class="dislike-icon"
             src="./assets/down-arrow.png"

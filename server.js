@@ -19,13 +19,20 @@ app.set("view engine", "ejs");
 // Stel de map met ejs templates in
 app.set("views", "./views");
 
+// Werken met request data wordt hiermee makkelijker
+app.use(express.urlencoded({ extended: true }));
+
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 app.use(express.static("public"));
 
 // Maak een GET route voor de index
 app.get("/", function (request, response) {
+  let sortBy = "";
+  if (request.param("sort")) {
+    sortBy = `&sort=${request.param("sort")}`;
+  }
   // Haal alle personen uit de WHOIS API op
-  fetchJson(apiUrl + '/person/?filter={"squad_id":5}&sort=name').then(
+  fetchJson(apiUrl + '/person/?filter={"squad_id":5}' + sortBy).then(
     (apiData) => {
       // apiData bevat gegevens van alle personen uit alle squads
       // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
