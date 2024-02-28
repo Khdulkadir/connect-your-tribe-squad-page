@@ -34,6 +34,13 @@ app.get("/", function (request, response) {
   // Haal alle personen uit de WHOIS API op
   fetchJson(apiUrl + '/person/?filter={"squad_id":5}' + sortBy).then(
     (apiData) => {
+      apiData.data.forEach((person) => {
+        try {
+          person.custom = JSON.parse(person.custom);
+        } catch (error) {
+          person.custom = {};
+        }
+      });
       // apiData bevat gegevens van alle personen uit alle squads
       // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
 
@@ -46,10 +53,40 @@ app.get("/", function (request, response) {
   );
 });
 
+// // Maak een POST route voor de index
+// app.post("/", function (request, response) {
+//   // Er is nog geen afhandeling van POST, redirect naar GET op /
+//   response.redirect(303, "/");
+// });
+
 // Maak een POST route voor de index
 app.post("/", function (request, response) {
-  // Er is nog geen afhandeling van POST, redirect naar GET op /
-  response.redirect(303, "/");
+  // haal de huidige gegevens op van de persoon
+  fetchJson(apiUrl + "/person/").then((apiData) => {
+    try {
+      apiData.data.custom = JSON.parse(apiData.data.custom);
+    } catch (error) {
+      apiData.data.custom = {};
+    }
+
+    if (apiData.data.custom.likes) {
+      apiData.data.custom.likes = apiData.data.custom.likes + 1;
+    } else {
+      apiData.data.custom.likes = 1;
+    }
+
+    fetchJson(apiUrl + "/person/" + request.params.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        custom: JSON.stringify(apiData.data.custom),
+      }),
+    }).then(() => {
+      response.redirect(303, "/");
+    });
+  });
 });
 
 // Maak een GET route voor een detailpagina met een request parameter id

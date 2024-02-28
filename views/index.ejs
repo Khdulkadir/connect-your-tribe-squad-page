@@ -19,6 +19,14 @@
   <div class="container">
     <% persons.forEach(person => { %>
     <article>
+      <form method="POST" action="/">
+        <span><%= person.custom?.likes ? person.custom.likes : 0 %></span>
+        <button type="submit" name="like">Like</button>
+      </form>
+      <button type="submit" name="like">
+        <img src="./assets/up-arrow.png" />
+      </button>
+      <p class="like-counter"><%= 0 %></p>
       <img
         class="avatar"
         src="<%= person.avatar %>"

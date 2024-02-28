@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   likeButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const numberElement = button.nextElementSibling;
-      const currentNumber = parseInt(numberElement.textContent);
+      let numberElement = button.nextElementSibling;
+      let currentNumber = parseInt(numberElement.textContent);
       numberElement.textContent = currentNumber + 1;
     });
   });
 
   dislikeButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const numberElement = button.previousElementSibling;
-      const currentNumber = parseInt(numberElement.textContent);
+      let numberElement = button.previousElementSibling;
+      let currentNumber = parseInt(numberElement.textContent);
       numberElement.textContent = currentNumber - 1;
     });
   });
