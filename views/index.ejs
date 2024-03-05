@@ -7,7 +7,11 @@
     <h2>21 Resultaten</h2>
     <div class="sorting">
       <p>Sorteren op:</p>
-      <select onchange="saveSelectedOption(this); location = this.value;">
+      <select
+        aria-label="sorting"
+        class="sorting-options"
+        onchange="saveSelectedOption(this); location = this.value;"
+      >
         <option value="/">Standaard</option>
         <option value="/?sort=name">Naam A-Z</option>
         <option value="/?sort=-name">Naam Z-A</option>
@@ -19,14 +23,6 @@
   <div class="container">
     <% persons.forEach(person => { %>
     <article>
-      <form method="POST" action="/">
-        <span><%= person.custom?.likes ? person.custom.likes : 0 %></span>
-        <button type="submit" name="like">Like</button>
-      </form>
-      <button type="submit" name="like">
-        <img src="./assets/up-arrow.png" />
-      </button>
-      <p class="like-counter"><%= 0 %></p>
       <img
         class="avatar"
         src="<%= person.avatar %>"
@@ -45,7 +41,12 @@
             width="30px"
             alt="website"
           />
-          <a href="<%= person.website %>"><%= person.website %></a>
+          <a
+            class="website"
+            aria-label="person-website"
+            href="<%= person.website %>"
+            ><%= person.website %></a
+          >
         </li>
         <li>
           <img
